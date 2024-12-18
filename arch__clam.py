@@ -66,14 +66,14 @@ def qa0_firing_rule(INPUT, Agent):
             print(group_response)
             print("reset q aux")
         else:
-            Agent.counter -= 1
+            if Agent.counter >= 1:
+                Agent.counter -= 1
             group_response = np.zeros(number_qa_neurons)
             group_response[0 : Agent.counter] = 1
         
             print(group_response)
             print("de increment")
-        if Agent.counter >= 1:
-            Agent.counter -= 1
+
     else:    #If the agent did not react then dont touch the counter
         group_response = np.zeros(number_qa_neurons)
         group_response[0 : Agent.counter] = 1
