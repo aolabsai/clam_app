@@ -21,7 +21,7 @@ Arch = ar.Arch(arch_i, arch_z, arch_c, connector_function, arch_qa=arch_qa, qa_c
 # Adding Instinct Control Neuron
 
 def c0_instinct_rule(INPUT, Agent):
-    if INPUT[0] == 1    and    Agent.story[Agent.state-1,  Agent.arch.Z__flat[0]] == 1:        # self.Z__flat[0] needs to be adjusted as per the agent, which output the designer wants the agent to repeat while learning postively or negatively
+    if INPUT[0] == 1    and    Agent.story[Agent.state-1,  Agent.arch.Z__flat[0]] == 1:    
         print("c0 triggered")
         instinct_response = [1, "c0 instinct triggered"]
     else:
@@ -45,6 +45,7 @@ def c1_instinct_rule(INPUT, Agent):
     return instinct_response  
 Arch.C__flat_pain = np.append(Arch.C__flat_pain, Arch.C__flat[c1])
 Arch.datamatrix[4, Arch.C[1][1]] = c1_instinct_rule 
+
 
 
 #Adding Aux Action
@@ -86,3 +87,12 @@ def qa0_firing_rule(INPUT, Agent):
     return group_response, group_meta
 # Saving the function to the Arch so the Agent can access it
 Arch.datamatrix_aux[2] = qa0_firing_rule
+
+
+#Connecting QA neurons to the Q Neurons
+for i in range(len(arch_i)):
+    Arch.datamatrix[1, Arch.Q__flat]+=Arch.datamatrix_aux[1]
+
+#Connecting QA neurons to the Z Neurons
+
+Arch.datamatrix[1, Arch.Z__flat] += Arch.datamatrix_aux[1]
