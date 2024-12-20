@@ -31,6 +31,7 @@ def c0_instinct_rule(INPUT, Agent):
 # Saving the function to the Arch so the Agent can access it
 Arch.datamatrix[4, Arch.C[1][0]] = c0_instinct_rule
 
+
 c1=4
 def c1_instinct_rule(INPUT, Agent):
     if INPUT[0] == 0 and Agent.story[Agent.state-1,  Agent.arch.Z__flat[0]] == 1:
@@ -46,6 +47,13 @@ def c1_instinct_rule(INPUT, Agent):
 Arch.C__flat_pain = np.append(Arch.C__flat_pain, Arch.C__flat[c1])
 Arch.datamatrix[4, Arch.C[1][1]] = c1_instinct_rule 
 
+print(Arch.datamatrix[3, Arch.C__flat])
+
+Arch.datamatrix[3, Arch.C__flat[4]] = np.array([]) #Decoupling the C1 neuron from all other neurons
+Arch.datamatrix[3, Arch.C__flat[4]] = list(np.array([5, 6])) #Connecting the C1 neuron to the Z neuron
+
+
+print(Arch.datamatrix[3, Arch.C__flat])
 
 
 #Adding Aux Action
@@ -94,5 +102,5 @@ for i in range(len(arch_i)):
     Arch.datamatrix[1, Arch.Q__flat]+=Arch.datamatrix_aux[1]
 
 #Connecting QA neurons to the Z Neurons
-
 Arch.datamatrix[1, Arch.Z__flat] += Arch.datamatrix_aux[1]
+
