@@ -4,7 +4,7 @@ import numpy as np
 import ao_core as ao
 import ao_arch as ar
 
-number_qa_neurons = 5
+number_qa_neurons = 20
 
 description = "Basic Clam"
 arch_i = [1, 1, 1]     # 3 neurons, 1 in each of 3 channels, corresponding to Food, Chemical-A, Chemical-B (present=1/not=0)
@@ -36,6 +36,7 @@ c1=4
 def c1_instinct_rule(INPUT, Agent):
     if INPUT[0] == 0 and Agent.story[Agent.state-1,  Agent.arch.Z__flat[0]] == 1:
         if Agent.counter ==0:
+            print("c1 triggered")
             instinct_response = [1, "c1 instinct triggered"]
         else:
             print("c1 pass")
@@ -49,8 +50,8 @@ Arch.datamatrix[4, Arch.C[1][1]] = c1_instinct_rule
 
 print(Arch.datamatrix[3, Arch.C__flat])
 
-Arch.datamatrix[3, Arch.C__flat[4]] = np.array([]) #Decoupling the C1 neuron from all other neurons
-Arch.datamatrix[3, Arch.C__flat[4]] = list(np.array([5, 6])) #Connecting the C1 neuron to the Z neuron
+#Arch.datamatrix[3, Arch.C__flat[4]] = np.array([]) #Decoupling the C1 neuron from all other neurons
+#Arch.datamatrix[3, Arch.C__flat[4]] = list(np.array([5, 6])) #Connecting the C1 neuron to the Z neuron
 
 
 print(Arch.datamatrix[3, Arch.C__flat])
@@ -98,9 +99,9 @@ Arch.datamatrix_aux[2] = qa0_firing_rule
 
 
 #Connecting QA neurons to the Q Neurons
-for i in range(len(arch_i)):
-    Arch.datamatrix[1, Arch.Q__flat]+=Arch.datamatrix_aux[1]
+# for i in range(len(arch_i)):
+#     Arch.datamatrix[1, Arch.Q__flat]+=Arch.datamatrix_aux[1]
 
-#Connecting QA neurons to the Z Neurons
-Arch.datamatrix[1, Arch.Z__flat] += Arch.datamatrix_aux[1]
+# #Connecting QA neurons to the Z Neurons
+# Arch.datamatrix[1, Arch.Z__flat] += Arch.datamatrix_aux[1]
 

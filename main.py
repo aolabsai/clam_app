@@ -32,8 +32,10 @@ def run_agent():
 
     # running the Agent                    
     response_array = []
+    st.session_state.agent.reset_state()
     for x in np.arange(user_STATES):
         agent_response = st.session_state.agent.next_state( clam_INPUT, LABEL, DD=True, Hamming=False, INSTINCTS=instincts_ONOFF, unsequenced=True, print_result = True)   # core method to run Agents
+        st.session_state.agent.reset_state()
         if agent_response == [1]:
             response_array.append(agent_response)
     
