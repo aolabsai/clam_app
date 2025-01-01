@@ -4,7 +4,7 @@ import numpy as np
 import ao_core as ao
 import ao_arch as ar
 
-number_qa_neurons = 20
+number_qa_neurons = 5
 
 description = "Basic Clam"
 arch_i = [1, 1, 1]     # 3 neurons, 1 in each of 3 channels, corresponding to Food, Chemical-A, Chemical-B (present=1/not=0)
