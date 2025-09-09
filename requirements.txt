@@ -1,0 +1,9 @@
+numpy
+streamlit
+
+# ao_core
+#   to run this streamlit app in the docker container,
+#   comment out the "git+" lines below as the dockerfile will install it directly instead
+# git+https://github.com/aolabsai/ao_core # private repo-- you'll need access via github (contact us: https://discord.gg/nHuJc4Y4n7) 
+
+beautifulsoup4 # For adding metadata to index.html when deploying with docker
